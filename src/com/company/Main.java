@@ -58,7 +58,7 @@ public class Main  {
         return values;
     }
 
-    static boolean isNumeric(String str)
+    private static boolean isNumeric(String str)
     {
         try
         {
