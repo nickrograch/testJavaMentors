@@ -46,6 +46,10 @@ class RomeNumber {
     private static String integerToRomanNumeral(int input) {
         StringBuilder s = new StringBuilder();
 
+        if (input == 0) {
+            s.append("N");
+        }
+
         while (input >= 100) {
             s.append("C");
             input -= 100;
@@ -82,9 +86,7 @@ class RomeNumber {
             s.append("I");
             input -= 1;
         }
-        if (input == 0) {
-            s.append("N");
-        }
+
         return s.toString();
     }
 }
