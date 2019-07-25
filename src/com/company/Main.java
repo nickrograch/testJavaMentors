@@ -9,7 +9,8 @@ public class Main  {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String input = reader.readLine().replaceAll(" ","");
+        String inputtedString = reader.readLine();
+        String input = inputtedString.replaceAll(" ","");
         String[] variables = getVariables(input);
 
         if (variables[1].equals("") || variables[2].equals("")){
@@ -19,6 +20,7 @@ public class Main  {
         if (isNumeric(variables[0]) && isNumeric(variables[2])){
             ArabNumber firstNumber = new ArabNumber(variables[0]);
             ArabNumber secondNumber = new ArabNumber(variables[2]);
+            checkSpaces(inputtedString);
             System.out.println(firstNumber.Calculate(secondNumber, variables[1]));
         }
         else if ((isNumeric(variables[0]) && romInArab(variables[2]) != 0) ||
@@ -29,9 +31,35 @@ public class Main  {
         else {
             RomeNumber firstnumber = new RomeNumber(variables[0]);
             RomeNumber secondnumber = new RomeNumber(variables[2]);
+            checkSpaces(inputtedString);
             System.out.println(firstnumber.Calculate(secondnumber, variables[1]));
         }
     }
+
+    private static void checkSpaces(String s){
+        String[] list = s.split("");
+        int spasesCount = 0;
+        for (String value : list) {
+            if (value.equals(" ")) {
+                spasesCount++;
+            }
+        }
+        if (spasesCount != 2){
+            System.out.println("Выражение доджно вводиться через пробел. Например: 1 + 2");
+            System.exit(0);
+        }
+
+    }
+//    private static boolean lookForSpaces(String s){
+//        String[] list = s.split("");
+//        int spasesCount = 0;
+//        for (String value : list) {
+//            if (value.equals(" ")) {
+//                spasesCount++;
+//            }
+//        }
+//        return spasesCount == 2;
+//    }
 
     private static String[] getVariables(String s){
         String[] values = new String[3];
